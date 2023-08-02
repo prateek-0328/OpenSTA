@@ -93,6 +93,7 @@ GateTableModel::setIsScaled(bool is_scaled)
     slew_model_->setIsScaled(is_scaled);
 }
 
+static int globalMyDelay=0;   //change
 void
 GateTableModel::gateDelay(const LibertyCell *cell,
 			  const Pvt *pvt,
@@ -107,6 +108,10 @@ GateTableModel::gateDelay(const LibertyCell *cell,
   const LibertyLibrary *library = cell->libertyLibrary();
   float delay = findValue(library, cell, pvt, delay_model_, in_slew,
 			  load_cap, related_out_cap);
+	 if (globalMyDelay){   //change
+          // delay = getDelayFromMyModel(in_slew, load_cap);      //change
+          delay =1;
+        }
   float sigma_early = 0.0;
   float sigma_late = 0.0;
   if (pocv_enabled && delay_sigma_models_[EarlyLate::earlyIndex()])
