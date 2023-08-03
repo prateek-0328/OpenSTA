@@ -1,4 +1,16 @@
+# Addition Of Custom Delay Calculation Model In OpenSTA
 
+## Overview 
+
+In this project some changes have been made to the open source tool OpenSTA to accomodate any custom model for delay calculation. These changes allows the user to use any of the model that they want (their own custom model or the inbuilt model) and generate the report according to that model.
+
+### Testing 
+
+For testing the changes sample files have been added to the experiment directory. 
+
+## Report 
+
+A final report on OpenSTA which consists of a detiled analysis of how the software works and in particular how the delay calculation model works is attached by the name of "REPORT ON OPENSTA.pdf". This report also describes the changes that have been made to accomodate a custom delay model.
 
 ## Build
 
