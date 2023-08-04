@@ -2,15 +2,18 @@
 
 ## Overview 
 
-In this project some changes have been made to the open source tool OpenSTA to accomodate any custom model for delay calculation. These changes allows the user to use any of the model that they want (their own custom model or the inbuilt model) and generate the report according to that model.
+In this project, some changes have been made to the open-source tool OpenSTA to accommodate any custom model for delay calculation. These changes allow the user to use any of the models that they want (their own custom model or the inbuilt model) and generate the report according to that model.
 
 ### Testing 
 
-For testing the changes sample files have been added to the experiment directory. 
+- For testing the changes sample files have been added to the experiment directory. 
+- We use the "use_custom_delay_model" variable to set the choice if we want to use the custom delay model or the Gate Table Delay model.
+- If we assign the value 1 to the variable then the custom model is used, else if 0 is assigned then an inbuilt model is used.
+- From the experiment directory if sta1.tcl is used then we get the results with delay=1, and if we use sta0.tcl then the inbuilt delay is used.
 
 ## Report 
 
-A final report on OpenSTA which consists of a detiled analysis of how the software works and in particular how the delay calculation model works is attached by the name of "REPORT ON OPENSTA.pdf". This report also describes the changes that have been made to accomodate a custom delay model.
+A final report on OpenSTA which consists of a detailed analysis of how the software works and in particular how the delay calculation model works is attached by the name of "REPORT ON OPENSTA.pdf". This report also describes the changes that have been made to accommodate a custom delay model.
 
 ## Build
 
