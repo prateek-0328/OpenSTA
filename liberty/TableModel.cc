@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
+#include "Sta.hh"
+#include "tcl.h"
 #include "TableModel.hh"
 
 #include <string>
@@ -93,7 +95,11 @@ GateTableModel::setIsScaled(bool is_scaled)
     slew_model_->setIsScaled(is_scaled);
 }
 
-static int globalMyDelay=0;   //change
+float getDelayFromMyModel(float in_slew, float load_cap){
+// USE THIS FUNCTION TO INPUT THE CUSTOM DELAY FUNCTION
+return 1;   //remove this after the function is completed
+}
+
 void
 GateTableModel::gateDelay(const LibertyCell *cell,
 			  const Pvt *pvt,
@@ -108,10 +114,14 @@ GateTableModel::gateDelay(const LibertyCell *cell,
   const LibertyLibrary *library = cell->libertyLibrary();
   float delay = findValue(library, cell, pvt, delay_model_, in_slew,
 			  load_cap, related_out_cap);
-	 if (globalMyDelay){   //change
-          // delay = getDelayFromMyModel(in_slew, load_cap);      //change
-          delay =1;
-        }
+      
+  const char* flagValue = Tcl_GetVar( Sta::sta()->tclInterp(),"use_custom_delay_model",TCL_GLOBAL_ONLY);
+
+  int globalMyDelay=  strcmp(flagValue, "1");
+ 
+  if (!globalMyDelay){
+    delay = getDelayFromMyModel(in_slew, load_cap);      //change
+  }
   float sigma_early = 0.0;
   float sigma_late = 0.0;
   if (pocv_enabled && delay_sigma_models_[EarlyLate::earlyIndex()])
